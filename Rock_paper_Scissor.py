@@ -1,5 +1,8 @@
 import random
-print("Rock Paper Scissor")
+
+print("Rock Paper Scissors")
+
+
 rock = '''
     _______
 ---'   ____)
@@ -26,34 +29,36 @@ scissors = '''
       (____)
 ---.__(___)
 '''
-computer = random.randint(1,3)
-rock=3
-paper=1
-scissor=2
-n = input("enter ur choice (r for rock, p for paper, s for scissors): ").lower()
-youDict = {"s": 1, "p": -1, "r": 0}
-reverseDict = {1: "s", -1: "p", 0: "r"}
-if n not in youDict:
+
+
+n = input("Enter your choice (r for rock, p for paper, s for scissors): ").lower()
+
+
+choice = {"r": 0, "p": 1, "s": 2}  
+choice_names = ["rock", "paper", "scissors"]
+choice_sign= [rock, paper, scissors]
+
+if n not in choice:
     print("Invalid input! Please enter 'r', 'p', or 's'.")
     exit()
-you = youDict[n]
 
-print(f"you choose {reverseDict[you]}\nComputer choose {reverseDict[computer]}")
-if (computer == -1 and you == 1):
-    print("you win")
-    print("congrats!")
-elif (computer == -1 and you == 0):
-    print("you lost")
-elif (computer == 0 and you == -1):
-    print("you win")
-    print("congrats!")
-elif (computer == 0 and you == 1):
-    print("you lost")
-elif (computer == 1 and you == 0):
-    print("you win")
-    print("congrats!")
-elif (computer == 1 and you == -1):
-    print("you lost")
 
+user_choice = choice[n]
+computer_choice = random.randint(0, 2)  
+
+
+print(f"\nYou chose {choice_names[user_choice]}:")
+print(choice_sign[user_choice])
+
+print(f"Computer chose {choice_names[computer_choice]}:")
+print(choice_sign[computer_choice])
+
+
+if user_choice == computer_choice:
+    print("It's a draw!")
+elif (user_choice - computer_choice) % 3 == 1:
+    print("You win!")
+    print("Congrats! 🎉")
 else:
-    print("draw!")
+    print("You lost!")
+    print("Better luck next time! 😅")
